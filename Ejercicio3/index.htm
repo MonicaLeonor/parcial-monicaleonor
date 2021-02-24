@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 3</title>
+    <style>
+        table, th, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+          }
+    </style>
 </head>
 <body>
     <h2>Formulario</h2>
@@ -23,12 +33,53 @@
     </select>
 
     <br><br>
-    <table>
+    <button onclick="calcular()">Calcular</button>
+    <br><br>
+    <br><br>
+    <button onclick="suma()">Suma</button> <div id="result"></div>
+   
+
+    <script>
+        function suma() {
+            var table = document.getElementById("tabla");
+            for (i = 1, len = table.rows.length, sumaN = 0; i < len; i++) {
+            sumaN += Number(document.getElementById('tabla').rows[i].cells[3].innerText);
+            }
+            var result = sumaN
+            var resultElement = document.getElementById("result")
+            resultElement.innerHTML = result;
+        }
+    </script>
+    <br><br>
+    <script>
+        function calcular() {
+            var table = document.getElementById("tabla");
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var dinero = document.getElementById("result").value
+            cell1.innerHTML = document.getElementById("compra").value;
+            cell2.innerHTML = document.getElementById("cantidad").value;
+            cell3.innerHTML = document.getElementById("precio").value;
+            cell4.innerHTML = document.getElementById("cantidad").value * document.getElementById("precio").value;
+            if ((document.getElementById("presupuesto").value) > dinero){
+                cell5.innerHTML = "dentro"
+            }else{
+                cell5.innerHTML = "sobre"
+            }
+                
+    }</script>
+
+    <table id="tabla" style="width: 100px;">
         <tr>
-          <th>compra</th>
-          <th>precio</th>  
-          <th>cantidad</th>
-          <th>subtotal</th>
+          <th>Compra</th>
+          <th>Precio</th>  
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Estado</th>
         </tr>
     </table>
 </body>
